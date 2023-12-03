@@ -1,4 +1,4 @@
-use std::{collections::HashMap, hash::Hash};
+use std::collections::HashMap;
 
 use regex::Regex;
 
@@ -64,7 +64,7 @@ pub fn part_two(input: &str) -> Option<u32> {
     for game in games {
         let mut game_split = game.split(':');
         let re = Regex::new(r"(\d+)").unwrap();
-        let answer: u32 = re
+        let _: u32 = re
             .find(game_split.next().unwrap())
             .unwrap()
             .as_str()
@@ -76,14 +76,15 @@ pub fn part_two(input: &str) -> Option<u32> {
 
         for pack in packs {
             for cube in pack.split(',') {
-                println!("hashmap:{:?}", cube_hashmap);
                 let mut cube_split = cube.split(' ');
                 let _ = cube_split.next().unwrap();
                 let count: u32 = cube_split.next().unwrap().parse().unwrap();
+
                 let color = cube_split.next().unwrap();
+                //println!("color:{:?}", color);
                 let min_value = cube_hashmap.get(color);
                 match min_value {
-                    Some(min_value) => {
+                    Some(_min_value) => {
                         // println!("{:?}", min_value);
                     }
                     None => {
@@ -98,7 +99,7 @@ pub fn part_two(input: &str) -> Option<u32> {
         }
 
         let mut mul = 1;
-        for (key, value) in cube_hashmap.iter() {
+        for (_key, value) in cube_hashmap.iter() {
             //println!("{}{}", key, value);
             mul *= value;
         }
